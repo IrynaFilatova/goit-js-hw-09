@@ -38,7 +38,7 @@ const formSubmit = event => {
     alert('Fill please all fields');
     return;
   }
-  localStorage.removeItem(localStorageKey);
+  localStorage.removeItem('feedback-form-state');
   formData = { email: '', message: '' };
   form.reset();
 };

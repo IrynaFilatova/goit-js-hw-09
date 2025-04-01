@@ -3,7 +3,7 @@ let formData = {
   email: '',
   message: '',
 };
-const fillFormFields = () => {
+const getFormData = () => {
   try {
     const formDataFromLS = JSON.parse(
       localStorage.getItem('feedback-form-state')
@@ -21,17 +21,17 @@ const fillFormFields = () => {
   }
 };
 
-fillFormFields();
+getFormData();
 
-const FormInputFields = event => {
-  const { target: formFieldEl } = event;
-  const fieldName = formFieldEl.name;
-  const fieldValue = formFieldEl.value.trim();
+const inputHandler = event => {
+  const { target: inputField } = event;
+  const fieldName = inputField.name;
+  const fieldValue = inputField.value.trim();
   formData[fieldName] = fieldValue;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
 
-const formSubmit = event => {
+const submitHandler = event => {
   event.preventDefault();
 
   if (!formData.email || !formData.message) {
@@ -42,5 +42,5 @@ const formSubmit = event => {
   formData = { email: '', message: '' };
   form.reset();
 };
-form.addEventListener('input', FormInputFields);
-form.addEventListener('submit', formSubmit);
+form.addEventListener('input', inputHandler);
+form.addEventListener('submit', submitHandler);
